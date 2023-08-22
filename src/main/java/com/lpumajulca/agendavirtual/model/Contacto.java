@@ -1,10 +1,15 @@
 package com.lpumajulca.agendavirtual.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
 public class Contacto {
 
     @Id
@@ -23,4 +28,5 @@ public class Contacto {
 
     @Column(name = "fechareg")
     private LocalDateTime fechaRegistro;
+
 }
