@@ -21,4 +21,10 @@ public class ContactoController {
         model.addAttribute("contactos", contatos);
         return "index";
     }
+
+    @GetMapping("/nuevo")
+    String nuevo(Model model) {
+        model.addAttribute("contacto", new Contacto());
+        return "nuevo";
+    }
 }
