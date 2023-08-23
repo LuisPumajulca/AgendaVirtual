@@ -5,6 +5,8 @@ import com.lpumajulca.agendavirtual.repository.ContactoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,7 +34,11 @@ public class ContactoController {
     }
 
     @PostMapping("/nuevo")
-    String crear(Contacto contacto, RedirectAttributes ra) {
+    String crear(@Validated Contacto contacto, BindingResult bindingResult, RedirectAttributes ra, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("contacto", contacto);
+            return "nuevo";
+        }
         contacto.setFechaRegistro(LocalDateTime.now());
         repository.save(contacto);
 

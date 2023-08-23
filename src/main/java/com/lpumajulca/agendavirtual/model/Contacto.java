@@ -22,18 +22,18 @@ public class Contacto {
     @Column(name = "idcontacto")
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "Este campo es obligatorio.")
     private String nombre;
 
-    @PastOrPresent
+    @PastOrPresent(message = "El valor no debe estar en futuro")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fechanac")
     private LocalDate fechaNacimiento;
 
-    @Size(max = 15)
+    @Size(max = 15, message = "El valor debe tener 15 catacteres como máximo.")
     private String celular;
 
-    @Email
+    @Email(message = "El email tiene un formato inválido.")
     private String email;
 
     @Column(name = "fechareg")
