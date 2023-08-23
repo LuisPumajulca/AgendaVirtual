@@ -2,6 +2,7 @@ package com.lpumajulca.agendavirtual.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class Contacto {
 
     private String nombre;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "fechanac")
     private LocalDate fechaNacimiento;
 
