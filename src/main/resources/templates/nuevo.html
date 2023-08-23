@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo Contacto</title>
+    <title>[[${contacto.id ne null ? 'Editar' : 'Crear'}]]  Contacto</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -15,7 +15,7 @@
 </head>
 <body class="container">
 
-<h3>Nuevo Contacto</h3>
+<h3>[[${contacto.id ne null ? 'Editar' : 'Crear'}]] Contacto</h3>
 <form action="" th:object="${contacto}" method="post" novalidate>
     <div class="mb-2">
         <label for="nombre">Nombre</label>
@@ -49,7 +49,7 @@
     <a href="/" class="btn btn-light me-2">
         Cancelar
     </a>
-    <button class="btn btn-primary">Crear Contacto</button>
+    <button class="btn btn-primary">[[${contacto.id ne null ? 'Editar' : 'Crear'}]]  Contacto</button>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

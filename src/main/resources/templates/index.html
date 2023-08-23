@@ -45,12 +45,14 @@
         <td th:text="*{email}"></td>
         <td th:text="*{#temporals.format(fechaRegistro, 'dd/MM/YYYY hh:mm a')}"></td>
         <td>
-            <a href="">
-                <i class="fa fa-edit"></i>
-            </a>
-            <a href="">
-                <i class="fa fa-trash"></i>
-            </a>
+            <div class="btn-group btn-group-sm">
+                <a th:href="@{/{idContacto}/editar(idContacto=*{id})}" class="btn btn-primary">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a href="" class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
         </td>
 
     </tr>
