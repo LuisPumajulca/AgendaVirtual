@@ -77,4 +77,14 @@ public class ContactoController {
 
         return "redirect:/";
     }
+
+    @PostMapping("/{id}/eliminar")
+    String eliminar(@PathVariable Integer id, RedirectAttributes ra) {
+        Contacto contacto = repository.getReferenceById(id);
+        repository.delete(contacto);
+
+        ra.addFlashAttribute("msgExito", "El contacto se ha eliminado correctamente");
+
+        return "redirect:/";
+    }
 }
