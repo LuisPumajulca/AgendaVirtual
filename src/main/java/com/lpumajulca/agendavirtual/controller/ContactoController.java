@@ -3,6 +3,10 @@ package com.lpumajulca.agendavirtual.controller;
 import com.lpumajulca.agendavirtual.model.Contacto;
 import com.lpumajulca.agendavirtual.repository.ContactoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,9 +26,10 @@ public class ContactoController {
     private ContactoRepository repository;
 
     @GetMapping
-    String index(Model model) {
-        List<Contacto> contatos = repository.findAll();
-        model.addAttribute("contactos", contatos);
+    String index(@PageableDefault(size = 5, sort = "fechaRegistro", direction = Sort.Direction.DESC) Pageable pageable,
+                 Model model) {
+        Page<Contacto> contactoPage = repository.findAll(pageable);
+        model.addAttribute("contactoPage", contactoPage);
         return "index";
     }
 

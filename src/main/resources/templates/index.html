@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
@@ -37,7 +37,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="contacto : ${contactos}" th:object="${contacto}">
+    <tr th:each="contacto : ${contactoPage}" th:object="${contacto}">
         <td th:text="*{id}"></td>
         <td th:text="*{nombre}"></td>
         <td th:text="*{#temporals.format(fechaNacimiento, 'dd/MM/YYYY')}"></td>
@@ -61,6 +61,19 @@
     </tr>
     </tbody>
 </table>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div sd:pagination-summary=""></div>
+    </div>
+    <div class="col-sm-6">
+        <nav class="pull-right">
+            <ul class="pagination" sd:pagination="full">
+            </ul>
+        </nav>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
