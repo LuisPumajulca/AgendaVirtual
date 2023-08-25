@@ -14,10 +14,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Controller
 public class ContactoController {
@@ -27,8 +27,15 @@ public class ContactoController {
 
     @GetMapping
     String index(@PageableDefault(size = 5, sort = "fechaRegistro", direction = Sort.Direction.DESC) Pageable pageable,
+                 @RequestParam(required = false) String busqueda,
                  Model model) {
-        Page<Contacto> contactoPage = repository.findAll(pageable);
+        Page<Contacto> contactoPage;
+
+        if (busqueda != null && busqueda.trim().length() > 0) {
+            contactoPage = repository.findByNombreContaining(busqueda, pageable);
+        } else {
+            contactoPage = repository.findAll(pageable);
+        }
         model.addAttribute("contactoPage", contactoPage);
         return "index";
     }
@@ -36,14 +43,14 @@ public class ContactoController {
     @GetMapping("/nuevo")
     String nuevo(Model model) {
         model.addAttribute("contacto", new Contacto());
-        return "nuevo";
+        return "form";
     }
 
     @PostMapping("/nuevo")
     String crear(@Validated Contacto contacto, BindingResult bindingResult, RedirectAttributes ra, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("contacto", contacto);
-            return "nuevo";
+            return "form";
         }
         contacto.setFechaRegistro(LocalDateTime.now());
         repository.save(contacto);
@@ -57,7 +64,7 @@ public class ContactoController {
     String editar(@PathVariable Integer id, Model model) {
         Contacto contacto = repository.getReferenceById(id);
         model.addAttribute("contacto", contacto);
-        return "nuevo";
+        return "form";
     }
 
     @PostMapping("/{id}/editar")
@@ -68,7 +75,7 @@ public class ContactoController {
                       Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("contacto", contacto);
-            return "nuevo";
+            return "form";
         }
         Contacto contactoFromDB = repository.getReferenceById(id);
         contactoFromDB.setNombre(contacto.getNombre());

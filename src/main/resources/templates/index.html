@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sd="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
@@ -11,7 +11,18 @@
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
-<body class="container">
+<body class="container py-5">
+
+<div class="p-5 bg-light rounded shadow mb-5"
+    style ="background: url('/mello.svg') no-repeat right; background-size: contain">
+    <h1 class="text-primary display-5">Bienvenido a mi Agenda</h1>
+    <p class="fw-bold mt-3">
+        Con esta aplicación podrás gestionar tu agenda virtual!
+    </p>
+    <p>
+        Consulta, crea, actualiza o elimina tus contactos de forma fácil y segura.
+    </p>
+</div>
 
 <h3>Mis Contactos</h3>
 <div class="alert alert-success alert-dismissible mt-3" th:if="${msgExito ne null}">
@@ -24,6 +35,19 @@
         <i class="fa fa-plus"></i> Registrar contacto
     </a>
 </div>
+
+<form action="" autocomplete="off">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="input-group mb-3">
+                    <button class="btn btn-primary" type="submit" id="button-addon1">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input type="text"  name="busqueda" class="form-control" placeholder="Buscar por nombre" th:value="${param.busqueda}">
+                </div>
+            </div>
+        </div>
+</form>
 
 <table class="table table-hover">
     <thead>
