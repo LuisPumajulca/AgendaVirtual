@@ -57,7 +57,7 @@ public class ContactoController {
 
         ra.addFlashAttribute("msgExito", "El contacto se ha creado correctamente");
 
-        return "redirect:/";
+        return "redirect:";
     }
 
     @GetMapping("/{id}/editar")
@@ -87,7 +87,7 @@ public class ContactoController {
 
         ra.addFlashAttribute("msgExito", "El contacto se ha actualizado correctamente");
 
-        return "redirect:/";
+        return "redirect:";
     }
 
     @PostMapping("/{id}/eliminar")
@@ -97,6 +97,6 @@ public class ContactoController {
 
         ra.addFlashAttribute("msgExito", "El contacto se ha eliminado correctamente");
 
-        return "redirect:/";
+        return "redirect:";
     }
 }
